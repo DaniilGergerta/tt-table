@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState, lazy, Suspense } from 'react';
+import { memo, useEffect, useCallback, useState, lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import type { ChangeEvent, FC } from 'react';
 
@@ -22,7 +22,7 @@ const ProductsPage: FC = () => {
 
 	const handleClose = useCallback(() => {
 		setIsOpen(false);
-    localStorage.removeItem('ProductAdd');
+		localStorage.removeItem('ProductAdd');
 	}, []);
 
 	const handleToggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
@@ -52,16 +52,16 @@ const ProductsPage: FC = () => {
 		);
 	}, [products, query]);
 
-  useEffect(() => {
-    const checkLocalStorage = () => {
-      const productFromLocalStorage = localStorage.getItem('ProductAdd');
-      if (productFromLocalStorage) {
-        setIsOpen(true);
-      }
-    }
+	useEffect(() => {
+		const checkLocalStorage = () => {
+			const productFromLocalStorage = localStorage.getItem('ProductAdd');
+			if (productFromLocalStorage) {
+				setIsOpen(true);
+			}
+		};
 
-    checkLocalStorage();
-  }, []);
+		checkLocalStorage();
+	}, []);
 
 	return (
 		<>
@@ -70,9 +70,7 @@ const ProductsPage: FC = () => {
 					<InputText label={'Search'} onChange={handleSearchOnChange} />
 				</div>
 				<div className="products__table">
-					<ProductsTable
-            products={filteredProducts}
-          />
+					<ProductsTable products={filteredProducts} />
 				</div>
 				<div className="products__container-add">
 					<button
@@ -96,4 +94,4 @@ const ProductsPage: FC = () => {
 	);
 };
 
-export default ProductsPage;
+export default memo(ProductsPage);
