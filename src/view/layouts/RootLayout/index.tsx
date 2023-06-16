@@ -8,9 +8,9 @@ import './styles.scss';
 
 const RootLayout: FC = () => {
 	return (
-		<div className="root-layout">
+		<div className='root-layout'>
 			<Header />
-			<main className="root-layout__main">
+			<main className='root-layout__main'>
 				<Outlet />
 			</main>
 			<Message />

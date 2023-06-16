@@ -1,4 +1,4 @@
-import { EProductsKeys } from 'src/controller/enums';
+import { EProductsKeys } from 'src/model/enums';
 import type {
 	INumericSteps,
 	ICastedKeys,

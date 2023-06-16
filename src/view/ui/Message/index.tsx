@@ -28,8 +28,8 @@ const Message: FC = () => {
 
 	return (
 		<div className={`message ${status ? 'show' : ''}`}>
-			<span className="message-content">{message}</span>
-			<button className="message-close" onClick={handleClose}>
+			<span className='message-content'>{message}</span>
+			<button className='message-close' onClick={handleClose}>
 				X
 			</button>
 		</div>

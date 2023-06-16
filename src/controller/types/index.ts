@@ -1,4 +1,4 @@
-import { EProductsKeys } from '../enums';
+import { EProductsKeys } from '../../model/enums';
 
 export type PropType<T extends object> = T[keyof T];
 

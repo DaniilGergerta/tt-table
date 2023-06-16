@@ -10,7 +10,7 @@ import Sorter from 'src/view/ui/Sorter';
 import FilterNode from 'src/view/ui/FilterNode';
 import { castProperty } from 'src/controller/utils/helpers';
 import { castedKeys } from 'src/model/constants';
-import { EProductsKeys, ESortTypes } from 'src/controller/enums';
+import { EProductsKeys, ESortTypes } from 'src/model/enums';
 
 import './styles.scss';
 

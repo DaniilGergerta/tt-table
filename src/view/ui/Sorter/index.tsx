@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import classNames from 'classnames';
-import { ESortTypes } from 'src/controller/enums';
+import { ESortTypes } from 'src/model/enums';
 import type { FC } from 'react';
 
 interface SorterProps {
@@ -30,7 +30,7 @@ const Sorter: FC<SorterProps> = ({
 				className={classNames('table-header__img', 'btn', {
 					'table-header__active': sortType === ESortTypes.DESC && isActive,
 				})}
-				src="images/buttons/upArrow.svg"
+				src='images/buttons/upArrow.svg'
 				alt={'DESC'}
 				onClick={handleSortDESC}
 			/>
@@ -38,7 +38,7 @@ const Sorter: FC<SorterProps> = ({
 				className={classNames('table-header__img', 'btn', {
 					'table-header__active': sortType === ESortTypes.ASC && isActive,
 				})}
-				src="images/buttons/downArrow.svg"
+				src='images/buttons/downArrow.svg'
 				alt={'ASC'}
 				onClick={handleSortASC}
 			/>

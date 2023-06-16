@@ -65,23 +65,23 @@ const ProductsPage: FC = () => {
 
 	return (
 		<>
-			<div className="products">
-				<div className="products__search">
+			<div className='products'>
+				<div className='products__search'>
 					<InputText label={'Search'} onChange={handleSearchOnChange} />
 				</div>
-				<div className="products__table">
+				<div className='products__table'>
 					<ProductsTable products={filteredProducts} />
 				</div>
-				<div className="products__container-add">
+				<div className='products__container-add'>
 					<button
-						type="button"
-						className="products__add btn btn--light"
+						type='button'
+						className='products__add btn btn--light'
 						onClick={handleToggleOpen}
 					>
 						<img
-							src="images/buttons/add.svg"
-							title="Add new product button"
-							alt="Add new product button"
+							src='images/buttons/add.svg'
+							title='Add new product button'
+							alt='Add new product button'
 						/>
 					</button>
 				</div>

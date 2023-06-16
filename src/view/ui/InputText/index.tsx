@@ -29,9 +29,9 @@ const InputText: FC<InputTextProps> = ({
 	);
 
 	return (
-		<div className="input-box">
+		<div className='input-box'>
 			<input
-				type="text"
+				type='text'
 				name={name}
 				value={value}
 				placeholder={error || ''}
@@ -41,7 +41,7 @@ const InputText: FC<InputTextProps> = ({
 				onChange={handleChange}
 				onBlur={onBlur}
 			/>
-			{!!error && <p className="input-box__error-message">{error}</p>}
+			{!!error && <p className='input-box__error-message'>{error}</p>}
 			<span
 				className={classNames('input-box__helper-text', {
 					error,

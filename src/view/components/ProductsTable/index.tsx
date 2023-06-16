@@ -5,7 +5,7 @@ import ProductRow from '../ProductRow';
 import TableHeaderCell from 'src/view/ui/TableHeaderCell';
 import { castedKeys } from 'src/model/constants';
 import { castProperty, sortByProperty } from 'src/controller/utils/helpers';
-import { EProductsKeys, ESortTypes } from 'src/controller/enums';
+import { EProductsKeys, ESortTypes } from 'src/model/enums';
 
 import type { FC } from 'react';
 import type {
@@ -26,13 +26,14 @@ interface ProductTableProps {
 const ProductsTable: FC<ProductTableProps> = ({ products }) => {
 	const [sortType, setSortType] = useState<ESortTypes>(ESortTypes.DISABLE);
 	const [sortColumn, setSortColumn] = useState<keyof IProduct | null>(null);
-	const [sortedProducts, setSortedProducts] = useState<IProduct[]>(products);
+	const [processedProducts, setProcessedProducts] =
+		useState<IProduct[]>(products);
 	const [filters, setFilters] = useState<Partial<IProductFilters> | null>(null);
 	const [marginProductsValues, setMarginProductsValues] =
 		useState<IMarginProductsValues>({} as IMarginProductsValues);
 
 	useEffect(() => {
-		setSortedProducts(products);
+		setProcessedProducts(products);
 	}, [products]);
 
 	const handleMinMaxFiltersChange = useCallback(
@@ -73,7 +74,7 @@ const ProductsTable: FC<ProductTableProps> = ({ products }) => {
 	}, [products]);
 
 	useEffect(() => {
-		setSortedProducts(products);
+		setProcessedProducts(products);
 	}, [products]);
 
 	const handlESortTypesChange = useCallback(
@@ -84,18 +85,18 @@ const ProductsTable: FC<ProductTableProps> = ({ products }) => {
 				switch (sortBy) {
 					case ESortTypes.ASC:
 						setSortColumn(key);
-						setSortedProducts((prev) => sortByProperty(prev, key, 'asc'));
+						setProcessedProducts((prev) => sortByProperty(prev, key, 'asc'));
 						return ESortTypes.ASC;
 
 					case ESortTypes.DESC:
 						setSortColumn(key);
-						setSortedProducts((prev) => sortByProperty(prev, key, 'desc'));
+						setProcessedProducts((prev) => sortByProperty(prev, key, 'desc'));
 						return ESortTypes.DESC;
 
 					case ESortTypes.DISABLE:
 					default:
 						setSortColumn(null);
-						setSortedProducts((prev) => prev.sort((x, y) => x.id - y.id));
+						setProcessedProducts((prev) => prev.sort((x, y) => x.id - y.id));
 						return ESortTypes.DISABLE;
 				}
 			});
@@ -120,7 +121,7 @@ const ProductsTable: FC<ProductTableProps> = ({ products }) => {
 	);
 
 	useEffect(() => {
-		setSortedProducts(
+		setProcessedProducts(
 			products.filter((product) =>
 				Object.entries(filters ?? {}).every(([key, filterValue]) => {
 					const productValue = product[key as NumericKeys<IProduct>];
@@ -178,8 +179,8 @@ const ProductsTable: FC<ProductTableProps> = ({ products }) => {
 				</tr>
 			</thead>
 			<tbody className="products-table__body">
-				{sortedProducts &&
-					sortedProducts.map((product) => (
+				{processedProducts &&
+					processedProducts.map((product) => (
 						<ProductRow key={`product-${product.id}`} product={product} />
 					))}
 			</tbody>

@@ -31,15 +31,15 @@ const Product: FC = () => {
 	}, [location]);
 
 	return (
-		<div className="product">
+		<div className='product'>
 			<div>
-				<button className="product__button btn" onClick={handleClick}>
+				<button className='product__button btn' onClick={handleClick}>
 					Back
 				</button>
 			</div>
 			{!!product && (
 				<Suspense fallback={<Spinner />}>
-					<div className="product__container">
+					<div className='product__container'>
 						<ProductCard product={product} />
 					</div>
 				</Suspense>
